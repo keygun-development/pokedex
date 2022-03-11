@@ -1,0 +1,12 @@
+// Import tailwind
+@import "tailwindcss/utilities";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+// Import globals
+@import "global/typography";
+@import "global/global";
+
+//Import components
+@import "components/navigation";
+@import "components/pokemon";
