@@ -20,7 +20,6 @@
             </p>
             <a @click="nextPage()">Volgende</a>
         </div>
-        <caller></caller>
         <open-pokemon
         v-if="open"
         :pokemon-name="clickedPokemon"
@@ -36,10 +35,9 @@
 
 import OpenPokemon from "./OpenPokemon";
 import pokemonData from "../pokemonData"
-import caller from "./Caller"
 
 export default {
-    components: {OpenPokemon, caller},
+    components: {OpenPokemon},
     data() {
         return {
             baseUrl: 'https://pokeapi.co/api/v2/',
