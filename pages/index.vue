@@ -2,9 +2,6 @@
     <div>
         <Navigation></Navigation>
         <div class="container mt-4">
-            <div class="w-full flex justify-center">
-                <img src="../assets/images/download.png"/>
-            </div>
             <h1>
                 Region:{{ selectedRegion }}
             </h1>

@@ -8,9 +8,14 @@
                             X
                         </button>
                     </div>
-                    <div class="w-full flex">
-                        <div class="w-6/12 bg-white rounded-2xl">
-                            {{  }}
+                    <div class="w-full flex justify-between" v-if="singlePokemonData.length > 0">
+                        <div class="flex flex-col items-center c-pokemon__single-image">
+                            <img
+                                :src="'https://projectpokemon.org/images/normal-sprite/'+singlePokemonData[0].name+'.gif'"/>
+                        </div>
+                        <div class="flex flex-col items-center c-pokemon__single-stats ml-8">
+                            <img
+                                :src="'https://projectpokemon.org/images/normal-sprite/'+singlePokemonData[0].name+'.gif'"/>
                         </div>
                     </div>
                 </div>
@@ -23,20 +28,44 @@
 
 export default {
 
+    data() {
+        return {
+            singlePokemonData: []
+        }
+    },
+
     props: {
-        pokemonName: String,
+        pokemonUrl: String,
         type: String,
     },
 
     watch: {
-        pokemonName: function(pokemonName){
-            this.pokemonName = pokemonName
+        pokemonUrl: function(pokemonUrl){
+            this.pokemonUrl = pokemonUrl;
+            this.getSinglePokemon();
         },
+    },
+
+    mounted() {
+        this.getSinglePokemon();
     },
 
     methods: {
         close () {
             this.$emit('close')
+        },
+
+        getSinglePokemon: function () {
+            fetch(this.pokemonUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (this.singlePokemonData.length > 0) {
+                    while (this.singlePokemonData.length) {
+                        this.singlePokemonData.pop();
+                    }
+                }
+                this.singlePokemonData.push(data);
+            })
         }
     }
 }

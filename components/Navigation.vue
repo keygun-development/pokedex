@@ -1,7 +1,7 @@
 <template>
     <div class="bg-red-500 p-12 c-navigation">
         <div class="container flex items-center">
-            <a class="c-navigation__logo" href="#">
+            <a class="c-navigation__logo" href="#national">
                 <img src="../assets/images/pokedex.png" />
             </a>
             <div class="w-full flex justify-between ml-8">
