@@ -3,10 +3,13 @@
     border-radius: 10px;
     width: 50%;
     background-size: cover;
+    min-height: 100%;
     transition: .3s;
 
     &:hover {
-        transform: rotate(10deg);
+        transform: rotate(6deg);
+        width: 60%;
+        min-height: calc(100% + 10%);
     }
 
     img {
@@ -34,6 +37,12 @@
 .c-pokemon__single-stats {
     width: 65%;
 
+    .c-pokemon__single-type {
+        border-radius: 20px;
+        padding: 10px;
+        text-align: center;
+        margin: 5px 0;
+    }
 }
 
 .c-pokemon__single-open {
