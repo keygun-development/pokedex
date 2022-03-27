@@ -9,7 +9,6 @@
                 <Querybuilder
                 :region="selectedRegion"
                 >
-
                 </Querybuilder>
             </div>
         </div>
