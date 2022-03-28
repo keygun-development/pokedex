@@ -65,7 +65,7 @@
 .c-pokemon__single-open {
     animation: openPokemonBox 2s;
     width: 100%;
-    height: 600px;
+    height: 650px;
     border-radius: 20px;
     padding: 20px;
     overflow: hidden;
@@ -124,14 +124,14 @@
     }
     100% {
         width: 100%;
-        height: 600px;
+        height: 650px;
     }
 }
 
 @keyframes closePokemonBox {
     0%   {
         width: 100%;
-        height: 600px;
+        height: 650px;
         padding: 20px;
     }
     80%  {
