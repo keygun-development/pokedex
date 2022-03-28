@@ -1,5 +1,20 @@
+* {
+    --border-color-white: #fff;
+    --border-width: 5px;
+    --bottom-distance: 0px;
+    --full-width: 100%;
+}
+
 .container {
-    max-width: 1280px;
+    max-width: 1080px;
     margin: 0 auto;
     position: unset !important;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .container {
+        max-width: 100%;
+        padding: 0 16px;
+    }
 }

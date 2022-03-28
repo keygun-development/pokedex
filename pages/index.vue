@@ -2,7 +2,7 @@
     <div>
         <Navigation></Navigation>
         <div class="container mt-4">
-            <h1>
+            <h1 class="mb-8">
                 Region:{{ selectedRegion }}
             </h1>
             <div class="w-full flex flex-wrap">

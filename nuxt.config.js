@@ -1,6 +1,7 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+  cache: true,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -21,7 +22,6 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'bulma',
     '~/assets/css/main.scss'
   ],
 
@@ -44,14 +44,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-      extend (config, ctx) {
-          config.module.rules.push({
-              test: /\.(ogg|mp3|wav|mpe?g)$/i,
-              loader: 'file-loader',
-              options: {
-                  name: '[path][name].[ext]'
-              }
-          })
-      }
   }
 }

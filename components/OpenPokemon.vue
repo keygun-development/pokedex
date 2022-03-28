@@ -20,24 +20,41 @@
                             X
                         </button>
                     </div>
-                    <div class="w-full flex justify-between mt-4" v-if="singlePokemonSpecies.length > 0">
-                        <div class="flex flex-col items-center justify-between c-pokemon__single-image text-center">
-                            <img
-                                :src="'https://projectpokemon.org/images/normal-sprite/'+singlePokemonData[0].name+'.gif'"
-                                @error="fallBackSprite($event, singlePokemonData[0].species.url)"
-                            />
-                            <p>
-                                {{ singlePokemonData[0].id }}. {{ singlePokemonData[0].name }}
-                            </p>
+                    <div class="w-full flex flex-col md:flex-row mt-4" v-if="singlePokemonSpecies.length > 0">
+                        <div class="flex flex-col w-full">
+                            <div class="flex flex-col items-center justify-between c-pokemon__single-image text-center w-full">
+                                <img
+                                    :src="'https://projectpokemon.org/images/normal-sprite/'+singlePokemonData[0].name+'.gif'"
+                                    @error="fallBackSprite($event, singlePokemonData[0].species.url)"
+                                />
+                                <p>
+                                    {{ singlePokemonData[0].id }}. {{ singlePokemonData[0].name }}
+                                </p>
+                            </div>
+                            <div v-if="evolutionData.length > 0" class="mt-4 w-full c-pokemon__single-evolution lg:hidden block">
+                                <div class="flex flex-wrap justify-center sm:justify-between">
+                                    <img
+                                        @click="getPokemonByEvolution(evolutionData[0].chain.species.url.split('/')[6])"
+                                        :src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+evolutionData[0].chain.species.url.split('/')[6]+'.png'"/>
+                                    <img
+                                        v-if="evolutionData[0].chain.evolves_to[0]"
+                                        @click="getPokemonByEvolution(evolutionData[0].chain.evolves_to[0].species.url.split('/')[6])"
+                                        :src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+evolutionData[0].chain.evolves_to[0].species.url.split('/')[6]+'.png'"/>
+                                    <img
+                                        v-if="evolutionData[0].chain.evolves_to[0] && evolutionData[0].chain.evolves_to[0].evolves_to[0]"
+                                        @click="getPokemonByEvolution(evolutionData[0].chain.evolves_to[0].evolves_to[0].species.url.split('/')[6])"
+                                        :src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+evolutionData[0].chain.evolves_to[0].evolves_to[0].species.url.split('/')[6]+'.png'"/>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex flex-col c-pokemon__single-stats ml-8">
+                        <div class="flex flex-col c-pokemon__single-stats md:ml-8 mt-4 md:mt-0">
                             <div class="flex flex-wrap justify-between w-full">
-                                <div class="c-pokemon__single-type w-5/12" :class="type.type.name" v-for="type in singlePokemonData[0].types">
+                                <div class="c-pokemon__single-type lg:w-5/12 w-full" :class="type.type.name" v-for="type in singlePokemonData[0].types">
                                     {{ type.type.name }}
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <div v-for="ability in singlePokemonData[0].abilities" class="flex">
+                                <div v-for="ability in singlePokemonData[0].abilities" class="lg:flex">
                                     <p>
                                         {{ ability.ability.name }}
                                     </p>
@@ -46,9 +63,9 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="mt-4 flex flex-wrap">
-                                <div class="w-2/6" v-for="stat in singlePokemonData[0].stats">
-                                    <div class="c-pokemon__single-stat m-2" :class="stat.stat.name">
+                            <div class="mt-4 flex flex-wrap base-stats">
+                                <div class="lg:w-2/6 w-full" v-for="stat in singlePokemonData[0].stats">
+                                    <div class="c-pokemon__single-stat lg:m-2 my-1" :class="stat.stat.name">
                                         <p>
                                             {{ stat.stat.name }} {{ stat.base_stat }}
                                         </p>
@@ -57,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <div v-if="evolutionData.length > 0" class="mt-4 w-full c-pokemon__single-evolution">
+                    <div v-if="evolutionData.length > 0" class="mt-4 w-full c-pokemon__single-evolution lg:block hidden">
                         <div class="flex justify-between">
                             <img
                                 @click="getPokemonByEvolution(evolutionData[0].chain.species.url.split('/')[6])"

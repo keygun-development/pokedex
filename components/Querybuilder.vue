@@ -1,38 +1,40 @@
 <template>
-    <div class="w-full flex flex-wrap">
-        <div
-            class="w-1/5 my-8 flex"
-            v-for="(pokemon, index) in pokemonEntries.slice(pokemonOffset, pokemonPerPage)">
+    <div class="w-full">
+        <div class="w-full grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 sm:gap-12 gap-4">
             <div
-                @click="setOpenPokemon(pokemon.pokemon_species.url, type[index])"
-                class="c-pokemon__single flex flex-col items-center"
-                :class="type[index]">
-                <img
-                    :src="'https://projectpokemon.org/images/normal-sprite/'+pokemon.pokemon_species.name+'.gif'"
-                    @error="fallBackSprite($event, pokemon.pokemon_species.url); type.push('Normal')" />
-                <p>
-                    {{ pokemon.pokemon_species.url.split('/')[6] }}.
-                </p>
-                <p>
-                    {{ pokemon.pokemon_species.name }}
-                </p>
+                class="w-full"
+                v-for="(pokemon, index) in pokemonEntries.slice(pokemonOffset, pokemonPerPage)">
+                <div
+                    @click="setOpenPokemon(pokemon.pokemon_species.url, type[index])"
+                    class="c-pokemon__single flex flex-col items-center"
+                    :class="type[index]">
+                    <img
+                        :src="'https://projectpokemon.org/images/normal-sprite/'+pokemon.pokemon_species.name+'.gif'"
+                        @error="fallBackSprite($event, pokemon.pokemon_species.url); type.push('Normal')" />
+                    <p>
+                        {{ pokemon.pokemon_species.url.split('/')[6] }}.
+                    </p>
+                    <p>
+                        {{ pokemon.pokemon_species.name }}
+                    </p>
+                </div>
             </div>
+            <open-pokemon
+            v-if="open"
+            :pokemon-url="clickedPokemon"
+            :type="clickedPokemonType"
+            @close="closePokemon()"
+            >
+
+            </open-pokemon>
         </div>
-        <div class="flex justify-between w-full">
+        <div class="flex justify-between w-full mt-8">
             <a @click="previousPage()">Vorige</a>
             <p>
                 {{ currentPage }}/{{ maxPage }}
             </p>
             <a @click="nextPage()">Volgende</a>
         </div>
-        <open-pokemon
-        v-if="open"
-        :pokemon-url="clickedPokemon"
-        :type="clickedPokemonType"
-        @close="closePokemon()"
-        >
-
-        </open-pokemon>
     </div>
 </template>
 
