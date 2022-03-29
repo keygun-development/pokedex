@@ -1,5 +1,8 @@
 # pokedex
 
+## FYI
+This project uses the [Pokeapi](https://pokeapi.co/) to fetch all pokemon
+
 ## Build Setup
 
 ```bash
